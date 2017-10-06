@@ -10,6 +10,7 @@ local doc = [[
 <body>
 	<h1>Args:</h1>
 ]]
+
 if args then
 	for k,v in pairs(args) do
 		doc = doc.."\t<p>"..k..": "..v.." </p>\n"
@@ -17,24 +18,23 @@ if args then
 end
 
 doc = doc..[[
-	<form class="submit_form" method="get" action="index.lua" autocomplete="off">
-		<div style="text-align: left">
-			<table>
-				<tr>
-					<td>Nev:</td>
-					<td><input name="s_nev" tabindex="1" type="text"></td>
-					<td colspan="2"><input name="s_nev_sub" value="Belepes" type="submit"></td>
-				</tr>				
-			</table>
-		</div>
-	</form>
+	<table>
+		<form class="submit_form" method="post" action="index.lua" autocomplete="off">
+			<tr>
+				<td>Post:</td>
+				<td><input name="s_nev" tabindex="1" type="text"></td>
+				<td colspan="2"><input name="s_nev_sub" value="Küld" type="submit"></td>
+			</tr>				
+		</form>
+		<form class="submit_form" method="get" action="index.lua" autocomplete="off">
+			<tr>
+				<td>Get:</td>
+				<td><input name="s_nev" tabindex="1" type="text"></td>
+				<td colspan="2"><input name="s_nev_sub" value="Küld" type="submit"></td>
+			</tr>
+		</form>             
+	</table>
 </body>
 </html>]]
 
-local header = http.." 200 OK".."\n"..
-	"Date: "..os.date().."\n"..
-	"Server: VpLua".."\n"..
-	"Content-Length: "..doc:len().."\n"..
-	"Content-Type: text/html; charset=utf-8".."\n"
-
-return header.."\n"..doc
+return doc
